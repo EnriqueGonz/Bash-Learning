@@ -5,6 +5,7 @@
  */
 package bashlearning;
 
+import com.mxrck.autocompleter.TextAutoCompleter;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -14,11 +15,9 @@ import java.io.InputStreamReader;
  * @author enriq
  */
 public class Autocompletar extends javax.swing.JFrame {
-
-    /**
-     * Creates new form Autocompletar
-     */
+    private  TextAutoCompleter ac;
     public Autocompletar() {
+        
         initComponents();
     }
 
@@ -49,10 +48,14 @@ public class Autocompletar extends javax.swing.JFrame {
 
         TexFieldComando.setBackground(new java.awt.Color(48, 10, 36));
         TexFieldComando.setForeground(new java.awt.Color(255, 255, 255));
-        TexFieldComando.setSelectedTextColor(new java.awt.Color(255, 255, 255));
         TexFieldComando.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TexFieldComandoActionPerformed(evt);
+            }
+        });
+        TexFieldComando.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TexFieldComandoKeyPressed(evt);
             }
         });
         getContentPane().add(TexFieldComando, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 20, 500, -1));
@@ -85,15 +88,30 @@ public class Autocompletar extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void TexFieldComandoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TexFieldComandoActionPerformed
-        // TODO add your handling code here:
+     
     }//GEN-LAST:event_TexFieldComandoActionPerformed
 
     private void botonEjecutarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEjecutarActionPerformed
         System.out.println("Click");
     }//GEN-LAST:event_botonEjecutarActionPerformed
 
+    private void TexFieldComandoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TexFieldComandoKeyPressed
+     ac=  new TextAutoCompleter(TexFieldComando);
+        ac.addItem("MKDIR <nombre de la carpeta>");
+        ac.addItem("LS <vacio o nombre de carpeta>");
+        ac.addItem("CAT <nombre de archivo con extension>");
+        ac.addItem("VIM <nombre de archivo>");
+        ac.addItem("CD <vacio o nombre de carpeta>");
+        ac.addItem("MV <nombre de archivo> <lugar de destino>");
+        ac.addItem("CLEAR");
+        ac.addItem("TOUCH <nombre del archivo con/sin extension>");
+    }//GEN-LAST:event_TexFieldComandoKeyPressed
+
     
     public static void main(String args[]) {
+        
+        
+        
         ProcessBuilder processBuilder = new ProcessBuilder();
         processBuilder.command("C:\\Program Files\\Git\\bin\\bash.exe", "-c", "clear");
 
