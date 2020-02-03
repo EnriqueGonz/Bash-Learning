@@ -92,7 +92,6 @@ public class Autocompletar extends javax.swing.JFrame {
     }//GEN-LAST:event_TexFieldComandoActionPerformed
 
     private void botonEjecutarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEjecutarActionPerformed
-        System.out.println("Click");
         Ejecutor(TexFieldComando.getText());
         
     }//GEN-LAST:event_botonEjecutarActionPerformed
@@ -139,7 +138,6 @@ public class Autocompletar extends javax.swing.JFrame {
             }
 
             int exitCode = process.waitFor();
-            System.out.println("\nExited with error code : " + exitCode);
             TextAreaComandos.setText(TextAreaComandos.getText()+"\nExited with error code : " + exitCode+"\n");
             
 
