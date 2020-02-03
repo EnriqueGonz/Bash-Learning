@@ -93,6 +93,8 @@ public class Autocompletar extends javax.swing.JFrame {
 
     private void botonEjecutarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEjecutarActionPerformed
         System.out.println("Click");
+        Ejecutor(TexFieldComando.getText());
+        
     }//GEN-LAST:event_botonEjecutarActionPerformed
 
     private void TexFieldComandoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TexFieldComandoKeyPressed
@@ -110,31 +112,6 @@ public class Autocompletar extends javax.swing.JFrame {
     
     public static void main(String args[]) {
         
-        
-        
-        ProcessBuilder processBuilder = new ProcessBuilder();
-        processBuilder.command("C:\\Program Files\\Git\\bin\\bash.exe", "-c", "clear");
-
-        try {
-
-            Process process = processBuilder.start();
-
-            BufferedReader reader =
-                    new BufferedReader(new InputStreamReader(process.getInputStream()));
-
-            String line;
-            while ((line = reader.readLine()) != null) {
-                System.out.println(line);
-            }
-
-            int exitCode = process.waitFor();
-            System.out.println("\nExited with error code : " + exitCode);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Autocompletar().setVisible(true);
@@ -158,10 +135,13 @@ public class Autocompletar extends javax.swing.JFrame {
             String line;
             while ((line = reader.readLine()) != null) {
                 System.out.println(line);
+                TextAreaComandos.setText(TextAreaComandos.getText()+line+"\n");
             }
 
             int exitCode = process.waitFor();
             System.out.println("\nExited with error code : " + exitCode);
+            TextAreaComandos.setText(TextAreaComandos.getText()+"\nExited with error code : " + exitCode+"\n");
+            
 
         } catch (IOException e) {
             e.printStackTrace();
