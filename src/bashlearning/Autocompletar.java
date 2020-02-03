@@ -136,7 +136,7 @@ public class Autocompletar extends javax.swing.JFrame {
                 System.out.println(line);
                 TextAreaComandos.setText(TextAreaComandos.getText()+line+"\n");
             }
-            if(comando.equals("clear")){
+            if(comando.equals("clear")||comando.equals("CLEAR")){
             TextAreaComandos.setText("");
             }
             int exitCode = process.waitFor();
