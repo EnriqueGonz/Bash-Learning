@@ -14,7 +14,7 @@ import java.util.regex.Pattern;
 
 /**
  *
- * @author enriq
+ * @author enrique
  */
 public class Autocompletar extends javax.swing.JFrame {
     boolean bol = true;
@@ -94,7 +94,6 @@ public class Autocompletar extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void TexFieldComandoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TexFieldComandoActionPerformed
-     
     }//GEN-LAST:event_TexFieldComandoActionPerformed
 
     private void botonEjecutarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEjecutarActionPerformed
@@ -104,7 +103,7 @@ public class Autocompletar extends javax.swing.JFrame {
         String texto = TexFieldComando.getText();
         String[] cadenaEntrada = texto.split(" ");
         
-        
+        //Santiaguini encuentra esto
         for (int i = 0; i < cadenaEntrada.length; i++) {
             for (int j = 0; j < reservadas.length; j++) {
                 if(cadenaEntrada[i].equals(reservadas[j])){
