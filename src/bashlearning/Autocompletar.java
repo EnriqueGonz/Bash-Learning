@@ -17,6 +17,9 @@ import java.util.regex.Pattern;
  * @author enriq
  */
 public class Autocompletar extends javax.swing.JFrame {
+    boolean bol = true;
+    String identificadores="";
+    String errores="";
     String[] reservadas = {"CLEAR", "MKDIR", "LS", "CAT","VIM","CD","TOUCH","MV"};
     private  TextAutoCompleter ac;
     public Autocompletar() {
@@ -95,28 +98,38 @@ public class Autocompletar extends javax.swing.JFrame {
     }//GEN-LAST:event_TexFieldComandoActionPerformed
 
     private void botonEjecutarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEjecutarActionPerformed
+        errores="";identificadores="";
         String reservadasEntrada ="";
-        String identificadores="";
         Ejecutor(TexFieldComando.getText());
         String texto = TexFieldComando.getText();
-        Pattern pat = Pattern.compile("[-_a-zA-Z0-9][a-zA-Z0-9]+");
-        Matcher mat = pat.matcher(texto);
         String[] cadenaEntrada = texto.split(" ");
-        if(mat.matches()){
-            System.out.println("identificador valido");
-        }
-        else{
-            System.out.println("identificador no valido");
-        }
+        
+        
             
         for (int i = 0; i < cadenaEntrada.length; i++) {
+            
             for (int j = 0; j < reservadas.length; j++) {
                 if(cadenaEntrada[i].equals(reservadas[j])){
                     reservadasEntrada=reservadasEntrada+cadenaEntrada[i]+" ";
+                    bol=false;
                 }
             }
+            if(bol==true){
+                Comprobar(cadenaEntrada[i]);
+                bol=true;
+            }
+            bol=true;
+            
+            
+            
+            
         }
+        
+        
+        
+        System.out.println("Identificadores: ["+identificadores+"]");
         System.out.println("Reservadas: ["+reservadasEntrada+"]");
+        System.out.println("Errores: ["+errores+"]");
         
         
     }//GEN-LAST:event_botonEjecutarActionPerformed
@@ -172,6 +185,19 @@ public class Autocompletar extends javax.swing.JFrame {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+    
+    public void Comprobar(String palabra){
+        Pattern pat = Pattern.compile("[-_a-zA-Z0-9][a-zA-Z0-9]+");
+        Matcher mat = pat.matcher(palabra);
+        
+        if(mat.matches()){
+            identificadores=identificadores+palabra+" ";
+        }else{
+            errores=errores+palabra+" ";
+        }
+            
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
