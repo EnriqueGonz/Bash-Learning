@@ -97,19 +97,16 @@ public class Autocompletar extends javax.swing.JFrame {
     private void botonEjecutarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEjecutarActionPerformed
         String reservadasEntrada ="";
         String identificadores="";
-        String cadena="";
-        cadena=TexFieldComando.getText();
-        Pattern pat = Pattern.compile("[-_a-zA-Z0-9][a-zA-Z0-9]+");
-        Matcher mat = pat.matcher(cadena);
-        
         Ejecutor(TexFieldComando.getText());
         String texto = TexFieldComando.getText();
+        Pattern pat = Pattern.compile("[-_a-zA-Z0-9][a-zA-Z0-9]+");
+        Matcher mat = pat.matcher(texto);
         String[] cadenaEntrada = texto.split(" ");
         if(mat.matches()){
-            System.out.println("valido");
+            System.out.println("identificador valido");
         }
         else{
-            System.out.println("no valido");
+            System.out.println("identificador no valido");
         }
             
         for (int i = 0; i < cadenaEntrada.length; i++) {
