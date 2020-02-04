@@ -9,6 +9,8 @@ import com.mxrck.autocompleter.TextAutoCompleter;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  *
@@ -95,10 +97,21 @@ public class Autocompletar extends javax.swing.JFrame {
     private void botonEjecutarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEjecutarActionPerformed
         String reservadasEntrada ="";
         String identificadores="";
+        String cadena="";
+        cadena=TexFieldComando.getText();
+        Pattern pat = Pattern.compile("[-_a-zA-Z0-9][a-zA-Z0-9]+");
+        Matcher mat = pat.matcher(cadena);
+        
         Ejecutor(TexFieldComando.getText());
         String texto = TexFieldComando.getText();
         String[] cadenaEntrada = texto.split(" ");
-        
+        if(mat.matches()){
+            System.out.println("valido");
+        }
+        else{
+            System.out.println("no valido");
+        }
+            
         for (int i = 0; i < cadenaEntrada.length; i++) {
             for (int j = 0; j < reservadas.length; j++) {
                 if(cadenaEntrada[i].equals(reservadas[j])){
