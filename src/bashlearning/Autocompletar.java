@@ -102,8 +102,8 @@ public class Autocompletar extends javax.swing.JFrame {
         Ejecutor(TexFieldComando.getText());
         String texto = TexFieldComando.getText();
         String[] cadenaEntrada = texto.split(" ");
+        //Santiago esta cosa esta chetadisima
         
-        //Santiaguini encuentra esto
         for (int i = 0; i < cadenaEntrada.length; i++) {
             for (int j = 0; j < reservadas.length; j++) {
                 if(cadenaEntrada[i].equals(reservadas[j])){
