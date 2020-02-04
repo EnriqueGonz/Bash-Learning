@@ -15,6 +15,7 @@ import java.io.InputStreamReader;
  * @author enriq
  */
 public class Autocompletar extends javax.swing.JFrame {
+    String[] reservadas = {"CLEAR", "MKDIR", "LS", "CAT","VIM","CD","TOUCH","MV"};
     private  TextAutoCompleter ac;
     public Autocompletar() {
         
@@ -92,12 +93,26 @@ public class Autocompletar extends javax.swing.JFrame {
     }//GEN-LAST:event_TexFieldComandoActionPerformed
 
     private void botonEjecutarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEjecutarActionPerformed
+        String reservadasEntrada ="";
+        String identificadores="";
         Ejecutor(TexFieldComando.getText());
+        String texto = TexFieldComando.getText();
+        String[] cadenaEntrada = texto.split(" ");
+        
+        for (int i = 0; i < cadenaEntrada.length; i++) {
+            for (int j = 0; j < reservadas.length; j++) {
+                if(cadenaEntrada[i].equals(reservadas[j])){
+                    reservadasEntrada=reservadasEntrada+cadenaEntrada[i]+" ";
+                }
+            }
+        }
+        System.out.println("Reservadas: ["+reservadasEntrada+"]");
+        
         
     }//GEN-LAST:event_botonEjecutarActionPerformed
 
     private void TexFieldComandoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TexFieldComandoKeyPressed
-     ac=  new TextAutoCompleter(TexFieldComando);
+        ac=new TextAutoCompleter(TexFieldComando);
         ac.addItem("MKDIR <nombre de la carpeta>");
         ac.addItem("LS <vacio o nombre de carpeta>");
         ac.addItem("CAT <nombre de archivo con extension>");
@@ -110,7 +125,6 @@ public class Autocompletar extends javax.swing.JFrame {
 
     
     public static void main(String args[]) {
-        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Autocompletar().setVisible(true);
@@ -140,7 +154,7 @@ public class Autocompletar extends javax.swing.JFrame {
             TextAreaComandos.setText("");
             }
             int exitCode = process.waitFor();
-            TextAreaComandos.setText(TextAreaComandos.getText()+"\nExited with error code : " + exitCode+"\n");
+            TextAreaComandos.setText(TextAreaComandos.getText()+"Exited with error code : " + exitCode+"\n");
             
 
         } catch (IOException e) {
