@@ -105,9 +105,7 @@ public class Autocompletar extends javax.swing.JFrame {
         String[] cadenaEntrada = texto.split(" ");
         
         
-            
         for (int i = 0; i < cadenaEntrada.length; i++) {
-            
             for (int j = 0; j < reservadas.length; j++) {
                 if(cadenaEntrada[i].equals(reservadas[j])){
                     reservadasEntrada=reservadasEntrada+cadenaEntrada[i]+" ";
@@ -120,13 +118,9 @@ public class Autocompletar extends javax.swing.JFrame {
             }
             bol=true;
             
-            
-            
-            
         }
         
-        
-        
+
         System.out.println("Identificadores: ["+identificadores+"]");
         System.out.println("Reservadas: ["+reservadasEntrada+"]");
         System.out.println("Errores: ["+errores+"]");
